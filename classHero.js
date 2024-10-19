@@ -1,5 +1,5 @@
-
-let listHeroName = [
+// Lisa de heros com seus xps
+let listHeros = [
     ["Gatsuga",100],
     ["Aldebaran", 2050],
     ["Zoldrick", 7400],
@@ -7,64 +7,32 @@ let listHeroName = [
     ["Vishinu", 6200]
 ]
 
-for (i in listHeroName){
+// Laço para processamento dos heróis utilizando a função que calcula o level do hero baseado no xp
+for (let heroXp = 0; heroXp < listHeros.length; heroXp ++){
+    let nameHero = listHeros[heroXp][0]
+    let xpHero = listHeros[heroXp][1]
+    let levelHero = calcLevelHero(xpHero)
 
-    var xp = listHeroName[i][1]
+    console.log(`O Herói de nome ${nameHero} está no nível ${levelHero}`);
 
-    if(xp < 1000 ){
-        console.log("O Herói " + listHeroName[i][0] +  " está no nível de Ferro" )
-
-    } else if (xp >= 1001 && listHeroName[i][1] <= 2000) {
-        console.log("O Herói " + listHeroName[i][0] +  " está no nível de Bronze" )
-
-    } else if (xp >= 2001 && listHeroName[i][1] <= 5000) {
-        console.log("O Herói " + listHeroName[i][0] +  " está no nível de Prata" )
-
-    } else if (xp >= 5001 && listHeroName[i][1] <= 7000) {
-        console.log("O Herói " + listHeroName[i][0] +  " está no nível de Ouro" )
-
-    } else if (xp >= 7001 && listHeroName[i][1] <= 8000) {
-        console.log("O Herói " + listHeroName[i][0] +  " está no nível de Platina" )
-
-    } else if (xp >= 8001 && listHeroName[i][1] <= 9000) {
-        console.log("O Herói " + listHeroName[i][0] +  " está no nível de Ascendente" )
-
-    } else if (xp >= 9001 && listHeroName[i][1] <= 10000) {
-        console.log("O Herói " + listHeroName[i][0] +  " está no nível de Imortal" )
-
-    } else {
-        console.log("O Herói " + listHeroName[i][0] +  " está no nível de Radiante" )
-    }
 }
 
-// for (i = 0; i < listHeroName.length;i++){
+// Calcular o level com base no XP
+function calcLevelHero(xp) {
+    const levels = {
+      Ferro: { min: 0, max: 1000 },
+      Bronze: { min: 1001, max: 2000 },
+      Prata: { min: 2001, max: 5000 },
+      Ouro: { min: 5001, max: 7000 },
+      Platina: { min: 7001, max: 8000 },
+      Ascendente: { min: 8001, max: 9000 },
+      Imortal: { min: 9001, max: 10000 },
+      Radiante: { min: 10001, max: Infinity }
+    };
 
-//     var xp = listHeroName[i][1]
-
-//     if(xp < 1000 ){
-//         console.log("O Herói " + listHeroName[i][0] +  " está no nível de Ferro" )
-
-//     } else if (xp >= 1001 && listHeroName[i][1] <= 2000) {
-//         console.log("O Herói " + listHeroName[i][0] +  " está no nível de Bronze" )
-
-//     } else if (xp >= 2001 && listHeroName[i][1] <= 5000) {
-//         console.log("O Herói " + listHeroName[i][0] +  " está no nível de Prata" )
-
-//     } else if (xp >= 5001 && listHeroName[i][1] <= 7000) {
-//         console.log("O Herói " + listHeroName[i][0] +  " está no nível de Ouro" )
-
-//     } else if (xp >= 7001 && listHeroName[i][1] <= 8000) {
-//         console.log("O Herói " + listHeroName[i][0] +  " está no nível de Platina" )
-
-//     } else if (xp >= 8001 && listHeroName[i][1] <= 9000) {
-//         console.log("O Herói " + listHeroName[i][0] +  " está no nível de Ascendente" )
-
-//     } else if (xp >= 9001 && listHeroName[i][1] <= 10000) {
-//         console.log("O Herói " + listHeroName[i][0] +  " está no nível de Imortal" )
-
-//     } else {
-//         console.log("O Herói " + listHeroName[i][0] +  " está no nível de Radiante" )
-//     }
-// }
-    
-
+    for (level in levels){
+        if(xp >= levels[level].min && xp <= levels[level].max){
+            return level;
+        }
+    }
+}
